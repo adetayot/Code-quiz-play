@@ -1,5 +1,7 @@
 # CODE-QUIZ-DAPP
 
+https://adetayot.github.io/Code-quiz-play/
+
 This is simple speed test application built on Celo.
 It has a simple functionality, where users pay a certain fee, undergo a quick quiz, and if they're fast enough they win the rewards from the smart contract.
 
