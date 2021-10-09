@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+
+    <script src="https://kit.fontawesome.com/792cbaa3d1.js" crossorigin="anonymous"></script>
+
+    <!-- Page Title -->
+
+    <title>Javascript Code Quiz!</title>
+    <style>
+        * {
+            background-color: black;
+        }
+
+        /* Global */
+        html {
+            /* min-height: 100%; */
+            overflow: hidden;
+        }
+
+        body {
+            color: rgba(255,255,255,.75);
+            font-family: 'Courier New', Courier, monospace;
+            background-color: transparent;  
+        }
+
+        .line-1 { 
+            position: relative;
+            top: 50%;  
+            width: 18em;
+            margin: 0 auto;
+            border-right: 2px solid rgba(255,255,255,.75);
+            font-size: 220%;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            transform: translateY(-50%);   
+            background-color: transparent; 
+        }
+        
+        /* Animation */
+        .typewriter {
+            animation: typewriter 4s steps(44) 1s 1 normal both,
+                    blinkTextCursor 500ms steps(44) infinite normal;    
+        }
+
+        @keyframes typewriter {
+            from{width: 0;}
+            to{width: 22em;}
+        } 
+
+        @keyframes blinkTextCursor {
+            from{border-right-color: rgba(74, 112, 238, 0.75);}
+            to{border-right-color: transparent;}
+        }
+        
+        body, .jumbotron {
+            background-color: black;
+            align-items: center;
+        }
+
+        .quiz {
+            width: 80%;
+        }
+
+        .quiz::before{
+            opacity: 0.3 !important;
+        }
+            
+        ul, li, h1, p, div {
+            color: white;
+            background-color: black;
+        }
+
+        ul, li {
+            text-align: center;
+            list-style-type: none;
+            background-color: black;
+        }
+
+        .card-body, p.text {
+            background-color: transparent;
+            color: #FFFFFF;
+            font-size: 1.5rem;
+            text-shadow: 2px 2px black;
+            font-family: sans-serif;
+        }
+
+        .btn {
+            background-color: cornflowerblue;
+            border-color: cornflowerblue;
+            color: #FFFFFF;
+            cursor: pointer;
+        }
+
+        /* Intro section styling */
+        #quizIntro {
+            padding-top: 70px;
+        }
+
+        /* Questions section styling */
+        ul, div#questionsSection {
+            align-items: center;
+            text-align: center; 
+            background-color: black;
+            color: white;
+            font-size: 1.25em; 
+            cursor: pointer;
+            outline: none !important;
+            border-color: #000000;
+        }
+
+        ul, div#questionsSection::after {
+            padding-top: 140px;
+        }
+
+        #answerDiv {
+            padding-top: 5px;
+            text-align: center;
+        }
+
+        #scoresRow {
+            padding-top: 100px;
+        }
+
+        /* JS created elements styling */
+        #h1El {
+            padding-top: 140px;
+            text-align: center;  
+            color: cornflowerblue; 
+        }
+
+        #pEl {
+            padding-top: 60px;
+            text-align: center;
+        }
+
+        #pEl2 {
+            text-align: center;
+        }
+        .center {
+            text-align: center;
+        }
+        #h2El {
+            padding-top: 30px;
+            color: cornflowerblue;
+            text-align: center;
+            font-size: 24px;
+        } 
+
+        #enterInitials, input#Initials {
+            text-align: center;
+            background-color: black;
+            color: white;
+            outline: none !important;
+        }
+
+        ul#scoreBoardUl, ul#questionsUl {
+            padding-top: 0px;
+            text-align: center;
+            align-items: center;
+        }
+
+        #initials {
+            text-align: center;
+            background-color: white;
+            width: 60px;
+        }
+
+        #submit {
+            margin-left: 10px;
+            margin-bottom: 4px;
+        }
+
+        #home {
+            margin-bottom: 80px;
+            margin-top: 120px;
+        }
+
+        .onomatopoetica {
+            color: cornflowerblue;
+        }
+        
+        #content-wrap {
+            padding-bottom: .5rem; /* Footer height */
+        }
+        
+        #footer, .madeWithLove {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 2.5rem; /* Footer height */
+            background-color: transparent;
+            color: cornflowerblue;
+            text-align: center;            
+        }
+
+        /* Smaller screens */
+        @media (max-width: 1050px) {
+            div.hometimer {
+                font-size: .85;
+            }
+            
+            .typewriter {
+                font-size: 1rem;
+            }
+            
+            img.quiz {
+                width: 350px;
+            }
+        
+            .card-body, p.text {
+                background-color: transparent;
+                color: #FFFFFF;
+                text-shadow: 1px 1px black;
+                font-size: .85rem;
+                padding: none;
+                margin: none;
+            }
+        
+            .luck {
+                font-size: 1rem;
+                text-shadow: 1px 1px black;
+            }
+
+            ul, div#questionsSection {
+                font-size: 1rem;
+                font-family: 'Courier New', Courier, monospace;
+                text-align: center;
+                align-items: center;
+            }
+            
+            .madeWithLove {
+                font-size: .55rem;
+                font-family: 'Courier New', Courier, monospace;
+            }
+            hr{
+                color: #FFFFFF;
+
+            }
+        }
+        #cover-spin {
+            position:fixed;
+            width:100%;
+            left:0;right:0;top:0;bottom:0;
+            background-color: rgba(255,255,255,0.7);
+            z-index:9999;
+            display:none;
+        }
+
+        @-webkit-keyframes spin {
+            from {-webkit-transform:rotate(0deg);}
+            to {-webkit-transform:rotate(360deg);}
+        }
+
+        @keyframes spin {
+            from {transform:rotate(0deg);}
+            to {transform:rotate(360deg);}
+        }
+
+        #cover-spin::after {
+            content:'';
+            display:block;
+            position:absolute;
+            left:48%;top:40%;
+            width:40px;height:40px;
+            border-style:solid;
+            border-color:black;
+            border-top-color:transparent;
+            border-width: 4px;
+            border-radius:50%;
+            -webkit-animation: spin .8s linear infinite;
+            animation: spin .8s linear infinite;
+        }
+
+        .ishidden {
+            display: none;
+        }
+
+        #_notification {
+            width: max-content;
+            z-index: 100000;
+            border: 1px solid;
+            box-shadow: 5px 10px #888888;
+            position: absolute;
+        }
+
+        #time {
+            font-size: 30px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        ul li a:hover, ul li a:focus {
+        color:rgb(255, 1, 1) !important;
+        }
+
+        .scoreBoard {
+            display: flex;
+            justify-content: center;
+        }
+
+        #msg {
+            padding-top: 40px;
+        }
+
+    </style>
+</head>
+
+<!-- Body -->
+
+<body>
+    <div id="cover-spin"></div>
+    <div id="page-container">
+        <header class="quizIntro">
+            <div class="hometimer container-fluid" style="color:white; background-color:black; max-width: 100%;">
+                <nav class="navbar">
+                    <!-- View/link to scoresBoard -->
+                    <div style="width: 1000px;">
+                        <a href="index.html" style="text-decoration: none; left: 0%;"> <button style="background-color: grey; color: white; height: 40px; width: 100px;">Home</button></a>
+                        <a href="#" id="showScoreBoard" style="text-decoration: none; left: 20px !important;"><button  style="background-color: grey; color: white; height: 30px;">ScoreBoard</button></a>
+                        <a href="#" 
+                            id="addQuestionBtn" 
+                            class="ishidden" 
+                            style="text-decoration: none; left: 40px !important;"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addQuestionModal"
+                            >
+                            <button style="background-color: grey; color: white; height: 30px;">Add Questions</button>
+                        </a>    
+                    </div>
+
+                    <!-- Balance Show -->
+                    <div id="player">
+                        <span style="color: #000000;" class="nav-link border rounded-pill bg-light">
+                            <span id="balance" style="background-color: #FFFFFF">0</span> cUSD
+                        </span>
+                    </div>
+                    
+                     <div id="Admin" class='ishidden'>
+                        <a class="navbar-brand m-1 h6" style="color:white;">Game Balance</a>
+                        <button type="button" class="btn" >
+                            <span id="GameBalance" style="color: #FFFFFF; background-color: inherit;">0</span>
+                            cUSD
+                        </button>
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                          <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu"  style="right: 0 !important; left: unset !important; background-color: #838483;">
+                          <li>
+                            <a class="dropdown-item" 
+                              href="#"
+                              data-bs-toggle="modal"
+                              data-bs-target="#depositModal"
+                              style="background-color: #838483;"
+                            >
+                              Deposit
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" 
+                              href="#"
+                              data-bs-toggle="modal"
+                              data-bs-target="#withdrawalModal"
+                              style="background-color: #838483;"
+                            >
+                              Withdraw
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                </nav>
+               
+               <!-- Timer container -->
+
+                <div id="quizContainer">
+                    <div id="currentTime" class="timer" style="color: white;" class="d-flex justify-content-end time">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <div id="_notification" class="alert alert-warning sticky-top mt-2 ishidden" role="alert">
+                        <span style="background-color: inherit" id="notification">⌛ Loading...</span>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- Quiz content -->
+
+        <section id="quizSection" class="ishidden">
+            <div id="questionsSection">
+                <div class="container-fluid">
+                    <div class="jumbotron jumbotron-fluid text-center" style="height: 100px; width: auto;">
+                        <img class="quiz" src="https://www.nycoproducts.com/wp-content/uploads/2019/09/Disinfecting-Quiz-30881050_m.jpg">
+                    </div>
+                </div>
+                <div class="container-fluid text-center">
+                    <p class="line-1 typewriter">WELCOME TO THE JAVASCRIPT CODE QUIZ!</p>
+                    <div class="card-deck">
+                        <div class="card-body">
+                            <p class="text">
+                                You have 75 seconds to answer questions testing your knowledge of JavaScript
+                                fundamentals. </p>
+                            <p class="text">Incorrect answers have a 10 second penalty! </p>
+                            <p class="text">Will you get
+                                the high score?
+                            </p>
+                        </div>
+                    </div>
+                    <h5 class="luck mb-5" style="font-family: sans-serif; text-shadow: 2px 2px black;">GOOD LUCK!</h5>
+                    <div class="controls">
+                        <button id="startTimer" type="button" class="start-btn btn btn-light">Start
+                            Quiz!</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questions render here -->
+
+            <ul id="questionsUl" style="color: white; background-color: black;"></ul>
+        </section>
+    </div>
+    
+
+    <!-- Scores section -->
+
+    <section class="scoreBoard">  
+        <div class id="scoresSection">
+            <ul id="scoreBoardUl" style="color: white; background-color: black; margin: 0 auto !important;"></ul>
+        </div>
+    </section>
+
+    <!--Connection Modal-->
+    <div
+    class="modal fade"
+        id="connectionModal"
+        tabindex="-1"
+        aria-labelledby="modal"
+        aria-hidden="true"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+    >
+        <div class="modal-dialog" style="background-color: aliceblue;"> 
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal">Connect</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Connect to use Dapp</p>
+                </div>
+                <div class="modal-footer">
+                    <button
+                    type="button"
+                    class="btn btn-dark"
+                    data-bs-dismiss="modal"
+                    id="connectModal"
+                    >
+                    Connect
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/Connection Modal-->
+
+    <!--/Error Modal-->
+    <div
+    class="modal fade"
+        id="errorModal"
+        tabindex="-1"
+        aria-labelledby="modal"
+        aria-hidden="true"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+    >
+        <div class="modal-dialog" style="background-color: aliceblue;"> 
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal">Connect</h5>
+                </div>
+                <div class="modal-body">
+                    <p>⚠️ Please install the CeloExtensionWallet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/Error Modal-->
+
+        <!--/Deposit Modal-->
+    <div
+        class="modal fade"
+        id="depositModal"
+        tabindex="-1"
+        aria-labelledby="depModal"
+        aria-hidden="true"
+        >
+        <div class="modal-dialog" style="background-color: aliceblue; border: #FFFFFF; border-width: 2px;"> 
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="depModal">Deposit Funds</h5>
+                    <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                    <div class="form-row">
+                        <div class="col">
+                        <input
+                            type="number"
+                            min="0"
+                            id="amount"
+                            class="form-control mb-2"
+                            placeholder="Enter amount in cUSD"
+                        />
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button
+                    type="button"
+                    class="btn btn-light border"
+                    data-bs-dismiss="modal"
+                    >
+                    Close
+                    </button>
+                    <button
+                    type="button"
+                    class="btn btn-dark"
+                    data-bs-dismiss="modal"
+                    id="depositBtn"
+                    >
+                    Deposit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/Deposit Modal-->
+
+   <!--/Withdrawal Modal-->
+    <div
+        class="modal fade"
+        id="withdrawalModal"
+        tabindex="-1"
+        aria-labelledby="witModal"
+        aria-hidden="true"
+        >
+        <div class="modal-dialog" style="background-color: aliceblue; border: #FFFFFF; border-width: 2px;"> 
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="witModal">Withdraw Funds</h5>
+                    <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                    <div class="form-row">
+                        <div class="col">
+                        <input
+                            type="number"
+                            min="0"
+                            id="amountToWithdraw"
+                            class="form-control mb-2"
+                            placeholder="Enter amount in cUSD"
+                        />
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button
+                    type="button"
+                    class="btn btn-light border"
+                    data-bs-dismiss="modal"
+                    >
+                    Close
+                    </button>
+                    <button
+                    type="button"
+                    class="btn btn-dark"
+                    data-bs-dismiss="modal"
+                    id="withdrawalBtn"
+                    >
+                    Withdraw
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+   <!--/Withdrawal Modal-->
+
+   <!--/Add Question Modal-->
+    <div
+        class="modal fade"
+        id="addQuestionModal"
+        tabindex="-1"
+        aria-labelledby="newQuestionModal"
+        aria-hidden="true"
+        >
+        <div class="modal-dialog" style="background-color: aliceblue; border: #FFFFFF; border-width: 2px;">
+            <div class="modal-content"> 
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newQuestionModal">New Question</h5>
+                    <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                    <div class="form-row">
+                        <div class="col">
+                        <input
+                            type="text"
+                            id="questionTitle"
+                            class="form-control mb-2"
+                            placeholder="Enter Question"
+                        />
+                        </div>
+                        <div class="col">
+                        <input
+                            type="text"
+                            id="option1"
+                            class="form-control mb-2"
+                            placeholder="Enter first option"
+                        />
+                        </div>
+                        <div class="col">
+                            <input
+                                type="text"
+                                id="option2"
+                                class="form-control mb-2"
+                                placeholder="Enter second option"
+                            />
+                        </div>
+                        <div class="col">
+                            <input
+                                type="text"
+                                id="option3"
+                                class="form-control mb-2"
+                                placeholder="Enter third option"
+                            />
+                        </div>
+                        <div class="col">
+                            <input
+                                type="text"
+                                id="option4"
+                                class="form-control mb-2"
+                                placeholder="Enter fourth option"
+                            />
+                        </div>
+                        <div class="col">
+                            <input
+                                type="text"
+                                id="answer"
+                                class="form-control mb-2"
+                                placeholder="Enter answer"
+                            />
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button
+                    type="button"
+                    class="btn btn-light border"
+                    data-bs-dismiss="modal"
+                    >
+                    Close
+                    </button>
+                    <button
+                    type="button"
+                    class="btn btn-dark"
+                    data-bs-dismiss="modal"
+                    id="newQuestionBtn"
+                    >
+                    Add Question
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--/Add Question Modal-->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/ethereum-blockies@0.1.1/blockies.min.js"></script>
+
+<script type="text/javascript" src="main.js"></script></body>
+
+</html>
