@@ -47,11 +47,11 @@ contract CodeQuizDapp {
   }
 
   struct userHistory {
-    string userName;
+    bool userPassed;
     uint userScore;
     uint userRebootTime;
-    bool userPassed;
     uint noOfTimePlayed;
+    string userName;
     quizState userState;
   }
 
@@ -134,11 +134,11 @@ contract CodeQuizDapp {
     uint _noOfTimesPlayed = 0;
 
     userHistoryRecords[msg.sender] = userHistory(
-      _userName,
+      _userPassed,
       _userScore,
       _userTime,
-      _userPassed,
       _noOfTimesPlayed,
+      _userName,
       quizState.NOT_STARTED
     );
   }
